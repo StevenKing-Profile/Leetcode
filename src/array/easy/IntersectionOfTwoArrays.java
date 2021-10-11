@@ -1,4 +1,4 @@
-package map.easy;
+package array.easy;
 
 import java.util.*;
 import java.util.stream.Collectors;
