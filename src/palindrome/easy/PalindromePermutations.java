@@ -1,30 +1,32 @@
 package palindrome.easy;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
+/*
+Given a string, determine if a permutation of the string could form a palindrome.
+Example:
+    "code" -> False,
+    "aab" -> True,
+    "carerac" -> True.
+*/
 public class PalindromePermutations {
     public static void main(String[] args) {
-        String s = "rasdfgcr";
+        String s = "carerac";
         System.out.println(canPermutePalindrome(s));
     }
 
     public static boolean canPermutePalindrome(String s) {
-        Map<Character, Integer> map = new HashMap<>();
-        int count = 0;
+        Set<Character> set = new HashSet<>();
 
         for (int i=0; i < s.length(); i++) {
-            if (map.containsKey(s.charAt(i))) {
-                map.put(s.charAt(i), map.get(s.charAt(i)) + 1);
+            if (set.contains(s.charAt(i))) {
+                set.remove(s.charAt(i));
+            } else {
+                set.add(s.charAt(i));
             }
-
-            map.put(s.charAt(i), 0);
         }
 
-        for (char key : map.keySet()) {
-            count += map.get(key) % 2;
-        }
-
-        return count <= 1;
+        return set.size() <= 1 ? true : false;
     }
 }
